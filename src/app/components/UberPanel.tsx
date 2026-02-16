@@ -1,16 +1,22 @@
 "use client";
 
-import { Slider } from "@mui/material";
+import SliderInput from "./SliderInput";
 
 interface UberPanelProps {
   uberMonthly: number;
-  onUberMonthlyChange: (value: number) => void;
+  viajesPorMes: number;
+  promedioPorViaje: number;
+  onViajesPorMesChange: (value: number) => void;
+  onPromedioPorViajeChange: (value: number) => void;
   fmt: (n: number) => string;
 }
 
 export default function UberPanel({
   uberMonthly,
-  onUberMonthlyChange,
+  viajesPorMes,
+  promedioPorViaje,
+  onViajesPorMesChange,
+  onPromedioPorViajeChange,
   fmt,
 }: UberPanelProps) {
   return (
@@ -25,34 +31,46 @@ export default function UberPanel({
         </div>
         <div>
           <h2 className="text-lg font-semibold tracking-tight" style={{ color: "#E8ECF4" }}>Uber / Taxi</h2>
-          <p className="text-xs" style={{ color: "#8896AB" }}>Gasto mensual estimado</p>
+          <p className="text-xs" style={{ color: "#8896AB" }}>Calcula tu gasto mensual</p>
         </div>
       </div>
 
-      <div className="mb-6">
-        <label className="label-text block mb-2" id="uber-monthly-label">
-          Gasto mensual
-        </label>
-        <Slider
-          min={500}
-          max={3000}
-          step={50}
-          value={uberMonthly}
-          onChange={(_, v) => onUberMonthlyChange(v as number)}
-          sx={{ color: "#FACC15" }}
-          size="small"
-          aria-labelledby="uber-monthly-label"
-        />
-        <p className="text-3xl font-bold mt-2 tracking-tight" style={{ color: "#FACC15" }}>
+      <div className="mb-4">
+        <div className="grid grid-cols-2 gap-4">
+          <SliderInput
+            label="Viajes por mes"
+            min={5}
+            max={120}
+            step={1}
+            value={viajesPorMes}
+            onChange={onViajesPorMesChange}
+            formatValue={(v) => `${v} viajes`}
+            color="#FACC15"
+          />
+          <SliderInput
+            label="Promedio por viaje"
+            min={5}
+            max={80}
+            step={1}
+            value={promedioPorViaje}
+            onChange={onPromedioPorViajeChange}
+            formatValue={(v) => `S/ ${v}`}
+            color="#FACC15"
+          />
+        </div>
+        <p className="text-3xl font-bold mt-3 tracking-tight" style={{ color: "#FACC15" }}>
           {fmt(uberMonthly)}
           <span className="text-sm font-normal ml-1" style={{ color: "#8896AB" }}>/mes</span>
+        </p>
+        <p className="text-xs mt-1" style={{ color: "#64748B" }}>
+          {viajesPorMes} viajes x S/ {promedioPorViaje} promedio
         </p>
       </div>
 
       <div className="card-elevated p-4">
-        <p className="label-text mb-1">Tu promedio real (Ene 2026)</p>
+        <p className="label-text mb-1">Ejemplo: promedio real (Ene 2026)</p>
         <p className="text-base font-semibold" style={{ color: "#E8ECF4" }}>
-          S/ 1,034 en soles + US$ 8.95
+          S/ 1,034 mensuales
         </p>
         <p className="text-xs mt-1" style={{ color: "#64748B" }}>
           42 viajes -- S/ 24.63 promedio/viaje

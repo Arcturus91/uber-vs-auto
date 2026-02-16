@@ -13,7 +13,9 @@ const fmt = (n: number) => `S/ ${Math.round(n).toLocaleString()}`;
 
 export default function UberVsAutoCalculator() {
   const [kmPerMonth, setKmPerMonth] = useState(800);
-  const [uberMonthly, setUberMonthly] = useState(1034);
+  const [viajesPorMes, setViajesPorMes] = useState(42);
+  const [promedioPorViaje, setPromedioPorViaje] = useState(25);
+  const uberMonthly = viajesPorMes * promedioPorViaje;
   const [carPrice, setCarPrice] = useState(45000);
   const [downPayment, setDownPayment] = useState(20);
   const [loanYears, setLoanYears] = useState(4);
@@ -84,7 +86,10 @@ export default function UberVsAutoCalculator() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <UberPanel
             uberMonthly={uberMonthly}
-            onUberMonthlyChange={setUberMonthly}
+            viajesPorMes={viajesPorMes}
+            promedioPorViaje={promedioPorViaje}
+            onViajesPorMesChange={setViajesPorMes}
+            onPromedioPorViajeChange={setPromedioPorViaje}
             fmt={fmt}
           />
           <CarPanel
