@@ -125,9 +125,26 @@ export default function UberVsAutoCalculator() {
         />
 
         <footer className="text-center mt-10 pb-6">
-          <p className="text-xs" style={{ color: "#334155" }}>
+          <p className="text-xs mb-6" style={{ color: "#334155" }}>
             Estimaciones basadas en costos promedio de Lima 2026. Los valores reales pueden variar.
           </p>
+          <div className="flex flex-col items-center gap-3 pt-6" style={{ borderTop: "1px solid #1E293B" }}>
+            <p className="text-sm font-medium" style={{ color: "#8896AB" }}>
+              Esta demo fue hecha por CloudforgeAI
+            </p>
+            <a
+              href="https://www.cloud-forge-ai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visitar CloudforgeAI"
+            >
+              <img
+                src="/images/cloudforgeai-logo.jpeg"
+                alt="CloudforgeAI logo"
+                className="h-12 rounded-lg object-contain"
+              />
+            </a>
+          </div>
         </footer>
       </div>
     </main>
