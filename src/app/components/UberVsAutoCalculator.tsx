@@ -170,7 +170,7 @@ export default function UberVsAutoCalculator() {
               <img
                 src="/images/cloudforgeai-logo.jpeg"
                 alt="CloudforgeAI logo"
-                className="h-24 rounded-lg object-contain"
+                className="h-36 rounded-lg object-contain"
               />
             </a>
           </div>
