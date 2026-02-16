@@ -37,14 +37,33 @@ export default function UberVsAutoCalculator() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 p-4 md:p-8">
+    <main className="min-h-screen p-4 md:p-8 lg:p-12" style={{ backgroundColor: "#0B0F1A", color: "#E8ECF4" }}>
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-1 text-white">
-          🚗 vs 🚕
-        </h1>
-        <p className="text-center text-gray-400 mb-8 text-sm">
-          ¿Te conviene comprar auto o seguir con Uber en Lima?
-        </p>
+        <header className="text-center mb-10">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl" style={{ backgroundColor: "rgba(14, 165, 233, 0.1)" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C1.4 11.3 1 12.1 1 13v3c0 .6.4 1 1 1h2" />
+                <circle cx="7" cy="17" r="2" />
+                <circle cx="17" cy="17" r="2" />
+              </svg>
+            </div>
+            <span className="text-sm font-medium" style={{ color: "#64748B" }}>vs</span>
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl" style={{ backgroundColor: "rgba(250, 204, 21, 0.1)" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FACC15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C1.4 11.3 1 12.1 1 13v3c0 .6.4 1 1 1h2" />
+                <circle cx="7" cy="17" r="2" />
+                <circle cx="17" cy="17" r="2" />
+              </svg>
+            </div>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2" style={{ color: "#E8ECF4" }}>
+            Auto propio vs Uber
+          </h1>
+          <p className="text-sm" style={{ color: "#64748B" }}>
+            {"Compara el costo real de tener auto vs seguir con Uber en Lima"}
+          </p>
+        </header>
 
         <ResultBanner
           diff={results.diff}
@@ -105,11 +124,12 @@ export default function UberVsAutoCalculator() {
           fmt={fmt}
         />
 
-        <p className="text-xs text-gray-600 text-center mt-6">
-          * Estimaciones basadas en costos promedio de Lima 2026. Los valores
-          reales pueden variar.
-        </p>
+        <footer className="text-center mt-10 pb-6">
+          <p className="text-xs" style={{ color: "#334155" }}>
+            Estimaciones basadas en costos promedio de Lima 2026. Los valores reales pueden variar.
+          </p>
+        </footer>
       </div>
-    </div>
+    </main>
   );
 }

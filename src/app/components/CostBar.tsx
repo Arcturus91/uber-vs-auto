@@ -19,28 +19,37 @@ export default function CostBar({
   opacity,
   suffix,
 }: CostBarProps) {
-  const widthPct = Math.max((value / maxValue) * 100, 3);
+  const widthPct = Math.max((value / maxValue) * 100, 4);
 
   return (
     <div className="flex items-center gap-3">
-      <span className="text-xs text-gray-400 w-32 text-right shrink-0 font-bold">
+      <span
+        className="text-xs w-28 text-right shrink-0 font-medium"
+        style={{ color: "#8896AB" }}
+      >
         {label}
       </span>
-      <div className="flex-1 bg-gray-800 rounded-full h-6 overflow-hidden">
+      <div className="flex-1 rounded-lg h-7 overflow-hidden" style={{ backgroundColor: "#1A2235" }}>
         <div
-          className="h-full rounded-full flex items-center px-2"
+          className="h-full rounded-lg flex items-center px-2.5 transition-all duration-300"
           style={{
             width: `${widthPct}%`,
             backgroundColor: color,
-            opacity: opacity ?? 1,
+            opacity: opacity ?? 0.85,
           }}
         >
-          <span className="text-xs font-semibold text-white whitespace-nowrap">
+          <span className="text-xs font-semibold whitespace-nowrap" style={{ color: "#FFFFFF" }}>
             {formatValue(value)}
             {suffix ? ` ${suffix}` : ""}
           </span>
         </div>
       </div>
+      <span
+        className="text-xs w-16 text-right shrink-0 font-mono tabular-nums"
+        style={{ color: "#CBD5E1" }}
+      >
+        {formatValue(value)}
+      </span>
     </div>
   );
 }

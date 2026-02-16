@@ -20,12 +20,19 @@ export default function SliderInput({
   step,
   value,
   onChange,
-  color = "#3b82f6",
+  color = "#0EA5E9",
   formatValue,
 }: SliderInputProps) {
   return (
-    <div>
-      <label className="text-xs text-gray-400">{label}</label>
+    <div className="py-1">
+      <div className="flex items-center justify-between mb-0.5">
+        <label className="label-text" id={`slider-${label}`}>
+          {label}
+        </label>
+        {formatValue && (
+          <span className="value-text">{formatValue(value)}</span>
+        )}
+      </div>
       <Slider
         min={min}
         max={max}
@@ -34,10 +41,8 @@ export default function SliderInput({
         onChange={(_, v) => onChange(v as number)}
         sx={{ color }}
         size="small"
+        aria-labelledby={`slider-${label}`}
       />
-      {formatValue && (
-        <p className="text-xs text-gray-300">{formatValue(value)}</p>
-      )}
     </div>
   );
 }

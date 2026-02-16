@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #0B0F1A;
+    color: #E8ECF4;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface-card rounded-2xl border border-surface-border;
+  }
+
+  .card-elevated {
+    @apply bg-surface-elevated rounded-xl border border-surface-border;
+  }
+
+  .section-heading {
+    @apply text-lg font-semibold tracking-tight;
+  }
+
+  .label-text {
+    @apply text-xs font-medium tracking-wide uppercase;
+    color: #8896AB;
+  }
+
+  .value-text {
+    @apply text-sm font-medium;
+    color: #CBD5E1;
+  }
+}
