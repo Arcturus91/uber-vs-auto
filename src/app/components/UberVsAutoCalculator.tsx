@@ -22,6 +22,11 @@ export default function UberVsAutoCalculator() {
   const [kmPerLiter, setKmPerLiter] = useState(13);
   const [parkingMonthly] = useState(350);
   const [hasCochera, setHasCochera] = useState(false);
+  const [mantenimientoMensual, setMantenimientoMensual] = useState(150);
+  const [lavadoMensual, setLavadoMensual] = useState(60);
+  const [peajesMensual, setPeajesMensual] = useState(200);
+  const [revisionTecnicaMensual, setRevisionTecnicaMensual] = useState(10);
+  const [soatMensual, setSoatMensual] = useState(7);
 
   const results = useCarCalculator({
     kmPerMonth,
@@ -34,6 +39,11 @@ export default function UberVsAutoCalculator() {
     kmPerLiter,
     parkingMonthly,
     hasCochera,
+    mantenimientoMensual,
+    lavadoMensual,
+    peajesMensual,
+    revisionTecnicaMensual,
+    soatMensual,
   });
 
   return (
@@ -92,6 +102,16 @@ export default function UberVsAutoCalculator() {
             onKmPerLiterChange={setKmPerLiter}
             onKmPerMonthChange={setKmPerMonth}
             onHasCocheraChange={setHasCochera}
+            mantenimientoMensual={mantenimientoMensual}
+            lavadoMensual={lavadoMensual}
+            peajesMensual={peajesMensual}
+            revisionTecnicaMensual={revisionTecnicaMensual}
+            soatMensual={soatMensual}
+            onMantenimientoChange={setMantenimientoMensual}
+            onLavadoChange={setLavadoMensual}
+            onPeajesChange={setPeajesMensual}
+            onRevisionTecnicaChange={setRevisionTecnicaMensual}
+            onSoatChange={setSoatMensual}
             downPaymentAmount={results.downPaymentAmount}
             totalMonths={results.totalMonths}
             monthlyRate={results.monthlyRate}

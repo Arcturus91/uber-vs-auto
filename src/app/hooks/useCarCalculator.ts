@@ -14,6 +14,11 @@ export function useCarCalculator(inputs: CarCalculatorInputs): CarCalculatorResu
       kmPerLiter,
       parkingMonthly,
       hasCochera,
+      mantenimientoMensual,
+      lavadoMensual,
+      peajesMensual,
+      revisionTecnicaMensual,
+      soatMensual,
     } = inputs;
 
     // Fuel calculation
@@ -21,13 +26,13 @@ export function useCarCalculator(inputs: CarCalculatorInputs): CarCalculatorResu
     const gallonsPerMonth = litersPerMonth / 3.785;
     const fuelMonthly = gallonsPerMonth * fuelPricePerGallon;
 
-    // Fixed costs (monthly)
-    const soatMonthly = 80 / 12;
+    // Fixed costs (monthly) — now from user inputs
+    const soatMonthly = soatMensual;
     const seguroVehicular = (carPrice * 0.04) / 12;
-    const mantenimiento = 1800 / 12;
-    const revisionTecnica = 120 / 12;
-    const lavado = 60;
-    const peajes = 200;
+    const mantenimiento = mantenimientoMensual;
+    const revisionTecnica = revisionTecnicaMensual;
+    const lavado = lavadoMensual;
+    const peajes = peajesMensual;
     const depreciacion = (carPrice * 0.15) / 12;
     const parking = hasCochera ? 0 : parkingMonthly;
 

@@ -18,6 +18,16 @@ interface CarPanelProps {
   onKmPerLiterChange: (v: number) => void;
   onKmPerMonthChange: (v: number) => void;
   onHasCocheraChange: (v: boolean) => void;
+  mantenimientoMensual: number;
+  lavadoMensual: number;
+  peajesMensual: number;
+  revisionTecnicaMensual: number;
+  soatMensual: number;
+  onMantenimientoChange: (v: number) => void;
+  onLavadoChange: (v: number) => void;
+  onPeajesChange: (v: number) => void;
+  onRevisionTecnicaChange: (v: number) => void;
+  onSoatChange: (v: number) => void;
   downPaymentAmount: number;
   totalMonths: number;
   monthlyRate: number;
@@ -42,6 +52,16 @@ export default function CarPanel({
   onKmPerLiterChange,
   onKmPerMonthChange,
   onHasCocheraChange,
+  mantenimientoMensual,
+  lavadoMensual,
+  peajesMensual,
+  revisionTecnicaMensual,
+  soatMensual,
+  onMantenimientoChange,
+  onLavadoChange,
+  onPeajesChange,
+  onRevisionTecnicaChange,
+  onSoatChange,
   downPaymentAmount,
   totalMonths,
   monthlyRate,
@@ -138,6 +158,66 @@ export default function CarPanel({
           }
           color="#0EA5E9"
         />
+
+        <div className="pt-3 mt-2" style={{ borderTop: "1px solid #1E293B" }}>
+          <p className="label-text mb-2">Costos fijos mensuales</p>
+          <div className="grid grid-cols-2 gap-4">
+            <SliderInput
+              label="Mantenimiento"
+              min={0}
+              max={500}
+              step={10}
+              value={mantenimientoMensual}
+              onChange={onMantenimientoChange}
+              formatValue={(v) => `S/ ${v}`}
+              color="#22C55E"
+            />
+            <SliderInput
+              label="Lavado"
+              min={0}
+              max={200}
+              step={10}
+              value={lavadoMensual}
+              onChange={onLavadoChange}
+              formatValue={(v) => `S/ ${v}`}
+              color="#818CF8"
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <SliderInput
+              label="Peajes"
+              min={0}
+              max={500}
+              step={10}
+              value={peajesMensual}
+              onChange={onPeajesChange}
+              formatValue={(v) => `S/ ${v}`}
+              color="#F472B6"
+            />
+            <SliderInput
+              label="SOAT"
+              min={0}
+              max={50}
+              step={1}
+              value={soatMensual}
+              onChange={onSoatChange}
+              formatValue={(v) => `S/ ${v}`}
+              color="#FB923C"
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <SliderInput
+              label="Rev. tecnica"
+              min={0}
+              max={50}
+              step={1}
+              value={revisionTecnicaMensual}
+              onChange={onRevisionTecnicaChange}
+              formatValue={(v) => `S/ ${v}`}
+              color="#2DD4BF"
+            />
+          </div>
+        </div>
 
         <FormControlLabel
           control={
