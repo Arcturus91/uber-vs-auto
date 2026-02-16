@@ -13,7 +13,9 @@ const fmt = (n: number) => `S/ ${Math.round(n).toLocaleString()}`;
 
 export default function UberVsAutoCalculator() {
   const [kmPerMonth, setKmPerMonth] = useState(800);
-  const [uberMonthly, setUberMonthly] = useState(1034);
+  const [viajesPorMes, setViajesPorMes] = useState(42);
+  const [promedioPorViaje, setPromedioPorViaje] = useState(25);
+  const uberMonthly = viajesPorMes * promedioPorViaje;
   const [carPrice, setCarPrice] = useState(45000);
   const [downPayment, setDownPayment] = useState(20);
   const [loanYears, setLoanYears] = useState(4);
@@ -22,6 +24,12 @@ export default function UberVsAutoCalculator() {
   const [kmPerLiter, setKmPerLiter] = useState(13);
   const [parkingMonthly] = useState(350);
   const [hasCochera, setHasCochera] = useState(false);
+  const [mantenimientoMensual, setMantenimientoMensual] = useState(150);
+  const [lavadoMensual, setLavadoMensual] = useState(60);
+  const [peajesMensual, setPeajesMensual] = useState(200);
+  const [revisionTecnicaMensual, setRevisionTecnicaMensual] = useState(10);
+  const [soatMensual, setSoatMensual] = useState(7);
+  const [costosFijosOpen, setCostosFijosOpen] = useState(false);
 
   const results = useCarCalculator({
     kmPerMonth,
@@ -34,6 +42,11 @@ export default function UberVsAutoCalculator() {
     kmPerLiter,
     parkingMonthly,
     hasCochera,
+    mantenimientoMensual,
+    lavadoMensual,
+    peajesMensual,
+    revisionTecnicaMensual,
+    soatMensual,
   });
 
   return (
@@ -74,7 +87,11 @@ export default function UberVsAutoCalculator() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <UberPanel
             uberMonthly={uberMonthly}
-            onUberMonthlyChange={setUberMonthly}
+            viajesPorMes={viajesPorMes}
+            promedioPorViaje={promedioPorViaje}
+            onViajesPorMesChange={setViajesPorMes}
+            onPromedioPorViajeChange={setPromedioPorViaje}
+            costosFijosOpen={costosFijosOpen}
             fmt={fmt}
           />
           <CarPanel
@@ -92,6 +109,18 @@ export default function UberVsAutoCalculator() {
             onKmPerLiterChange={setKmPerLiter}
             onKmPerMonthChange={setKmPerMonth}
             onHasCocheraChange={setHasCochera}
+            mantenimientoMensual={mantenimientoMensual}
+            lavadoMensual={lavadoMensual}
+            peajesMensual={peajesMensual}
+            revisionTecnicaMensual={revisionTecnicaMensual}
+            soatMensual={soatMensual}
+            onMantenimientoChange={setMantenimientoMensual}
+            onLavadoChange={setLavadoMensual}
+            onPeajesChange={setPeajesMensual}
+            onRevisionTecnicaChange={setRevisionTecnicaMensual}
+            onSoatChange={setSoatMensual}
+            costosFijosOpen={costosFijosOpen}
+            onCostosFijosToggle={() => setCostosFijosOpen(!costosFijosOpen)}
             downPaymentAmount={results.downPaymentAmount}
             totalMonths={results.totalMonths}
             monthlyRate={results.monthlyRate}
@@ -125,9 +154,26 @@ export default function UberVsAutoCalculator() {
         />
 
         <footer className="text-center mt-10 pb-6">
-          <p className="text-xs" style={{ color: "#334155" }}>
+          <p className="text-xs mb-6" style={{ color: "#334155" }}>
             Estimaciones basadas en costos promedio de Lima 2026. Los valores reales pueden variar.
           </p>
+          <div className="flex flex-col items-center gap-3 pt-6" style={{ borderTop: "1px solid #1E293B" }}>
+            <p className="text-sm font-medium" style={{ color: "#8896AB" }}>
+              Esta demo fue hecha por CloudforgeAI
+            </p>
+            <a
+              href="https://www.cloud-forge-ai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visitar CloudforgeAI"
+            >
+              <img
+                src="/images/cloudforgeai-logo.jpeg"
+                alt="CloudforgeAI logo"
+                className="h-12 rounded-lg object-contain"
+              />
+            </a>
+          </div>
         </footer>
       </div>
     </main>

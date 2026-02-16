@@ -9,6 +9,11 @@ export interface CarCalculatorInputs {
   kmPerLiter: number;
   parkingMonthly: number;
   hasCochera: boolean;
+  mantenimientoMensual: number;
+  lavadoMensual: number;
+  peajesMensual: number;
+  revisionTecnicaMensual: number;
+  soatMensual: number;
 }
 
 export interface CostItem {

@@ -18,6 +18,18 @@ interface CarPanelProps {
   onKmPerLiterChange: (v: number) => void;
   onKmPerMonthChange: (v: number) => void;
   onHasCocheraChange: (v: boolean) => void;
+  mantenimientoMensual: number;
+  lavadoMensual: number;
+  peajesMensual: number;
+  revisionTecnicaMensual: number;
+  soatMensual: number;
+  onMantenimientoChange: (v: number) => void;
+  onLavadoChange: (v: number) => void;
+  onPeajesChange: (v: number) => void;
+  onRevisionTecnicaChange: (v: number) => void;
+  onSoatChange: (v: number) => void;
+  costosFijosOpen: boolean;
+  onCostosFijosToggle: () => void;
   downPaymentAmount: number;
   totalMonths: number;
   monthlyRate: number;
@@ -42,6 +54,18 @@ export default function CarPanel({
   onKmPerLiterChange,
   onKmPerMonthChange,
   onHasCocheraChange,
+  mantenimientoMensual,
+  lavadoMensual,
+  peajesMensual,
+  revisionTecnicaMensual,
+  soatMensual,
+  onMantenimientoChange,
+  onLavadoChange,
+  onPeajesChange,
+  onRevisionTecnicaChange,
+  onSoatChange,
+  costosFijosOpen,
+  onCostosFijosToggle,
   downPaymentAmount,
   totalMonths,
   monthlyRate,
@@ -50,6 +74,8 @@ export default function CarPanel({
   operatingMonthly,
   fmt,
 }: CarPanelProps) {
+  const totalFijos = mantenimientoMensual + lavadoMensual + peajesMensual + revisionTecnicaMensual + soatMensual;
+
   return (
     <div className="card p-6 flex flex-col" style={{ borderColor: "rgba(14, 165, 233, 0.15)" }}>
       <div className="flex items-center gap-3 mb-6">
@@ -138,6 +164,97 @@ export default function CarPanel({
           }
           color="#0EA5E9"
         />
+
+        <div className="pt-3 mt-2" style={{ borderTop: "1px solid #1E293B" }}>
+          <div className="flex items-center justify-between mb-2">
+            <p className="label-text">Costos fijos mensuales</p>
+            <button
+              type="button"
+              onClick={onCostosFijosToggle}
+              className="flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs font-medium transition-colors"
+              style={{ color: "#8896AB", backgroundColor: costosFijosOpen ? "rgba(14, 165, 233, 0.1)" : "transparent" }}
+              aria-expanded={costosFijosOpen}
+              aria-controls="costos-fijos-content"
+            >
+              <span>S/ {totalFijos}/mes</span>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                className="transition-transform duration-200"
+                style={{ transform: costosFijosOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+          {costosFijosOpen && (
+            <div id="costos-fijos-content" className="flex flex-col gap-0">
+              <div className="grid grid-cols-2 gap-4">
+                <SliderInput
+                  label="Mantenimiento"
+                  min={0}
+                  max={500}
+                  step={10}
+                  value={mantenimientoMensual}
+                  onChange={onMantenimientoChange}
+                  formatValue={(v) => `S/ ${v}`}
+                  color="#22C55E"
+                />
+                <SliderInput
+                  label="Lavado"
+                  min={0}
+                  max={200}
+                  step={10}
+                  value={lavadoMensual}
+                  onChange={onLavadoChange}
+                  formatValue={(v) => `S/ ${v}`}
+                  color="#818CF8"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <SliderInput
+                  label="Peajes"
+                  min={0}
+                  max={500}
+                  step={10}
+                  value={peajesMensual}
+                  onChange={onPeajesChange}
+                  formatValue={(v) => `S/ ${v}`}
+                  color="#F472B6"
+                />
+                <SliderInput
+                  label="SOAT"
+                  min={0}
+                  max={50}
+                  step={1}
+                  value={soatMensual}
+                  onChange={onSoatChange}
+                  formatValue={(v) => `S/ ${v}`}
+                  color="#FB923C"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <SliderInput
+                  label="Rev. tecnica"
+                  min={0}
+                  max={50}
+                  step={1}
+                  value={revisionTecnicaMensual}
+                  onChange={onRevisionTecnicaChange}
+                  formatValue={(v) => `S/ ${v}`}
+                  color="#2DD4BF"
+                />
+              </div>
+            </div>
+          )}
+        </div>
 
         <FormControlLabel
           control={
