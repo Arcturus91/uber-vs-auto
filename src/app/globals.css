@@ -16,11 +16,15 @@
 
 @layer components {
   .card {
-    @apply bg-surface-card rounded-2xl border border-surface-border;
+    background-color: #111827;
+    border-radius: 1rem;
+    border: 1px solid #1E293B;
   }
 
   .card-elevated {
-    @apply bg-surface-elevated rounded-xl border border-surface-border;
+    background-color: #1A2235;
+    border-radius: 0.75rem;
+    border: 1px solid #1E293B;
   }
 
   .section-heading {
