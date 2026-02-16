@@ -29,6 +29,7 @@ export default function UberVsAutoCalculator() {
   const [peajesMensual, setPeajesMensual] = useState(200);
   const [revisionTecnicaMensual, setRevisionTecnicaMensual] = useState(10);
   const [soatMensual, setSoatMensual] = useState(7);
+  const [costosFijosOpen, setCostosFijosOpen] = useState(false);
 
   const results = useCarCalculator({
     kmPerMonth,
@@ -90,6 +91,7 @@ export default function UberVsAutoCalculator() {
             promedioPorViaje={promedioPorViaje}
             onViajesPorMesChange={setViajesPorMes}
             onPromedioPorViajeChange={setPromedioPorViaje}
+            costosFijosOpen={costosFijosOpen}
             fmt={fmt}
           />
           <CarPanel
@@ -117,6 +119,8 @@ export default function UberVsAutoCalculator() {
             onPeajesChange={setPeajesMensual}
             onRevisionTecnicaChange={setRevisionTecnicaMensual}
             onSoatChange={setSoatMensual}
+            costosFijosOpen={costosFijosOpen}
+            onCostosFijosToggle={() => setCostosFijosOpen(!costosFijosOpen)}
             downPaymentAmount={results.downPaymentAmount}
             totalMonths={results.totalMonths}
             monthlyRate={results.monthlyRate}

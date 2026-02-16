@@ -8,6 +8,7 @@ interface UberPanelProps {
   promedioPorViaje: number;
   onViajesPorMesChange: (value: number) => void;
   onPromedioPorViajeChange: (value: number) => void;
+  costosFijosOpen: boolean;
   fmt: (n: number) => string;
 }
 
@@ -17,6 +18,7 @@ export default function UberPanel({
   promedioPorViaje,
   onViajesPorMesChange,
   onPromedioPorViajeChange,
+  costosFijosOpen,
   fmt,
 }: UberPanelProps) {
   return (

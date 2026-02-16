@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import SliderInput from "./SliderInput";
 
@@ -29,6 +28,8 @@ interface CarPanelProps {
   onPeajesChange: (v: number) => void;
   onRevisionTecnicaChange: (v: number) => void;
   onSoatChange: (v: number) => void;
+  costosFijosOpen: boolean;
+  onCostosFijosToggle: () => void;
   downPaymentAmount: number;
   totalMonths: number;
   monthlyRate: number;
@@ -63,6 +64,8 @@ export default function CarPanel({
   onPeajesChange,
   onRevisionTecnicaChange,
   onSoatChange,
+  costosFijosOpen,
+  onCostosFijosToggle,
   downPaymentAmount,
   totalMonths,
   monthlyRate,
@@ -71,7 +74,6 @@ export default function CarPanel({
   operatingMonthly,
   fmt,
 }: CarPanelProps) {
-  const [costosFijosOpen, setCostosFijosOpen] = useState(false);
   const totalFijos = mantenimientoMensual + lavadoMensual + peajesMensual + revisionTecnicaMensual + soatMensual;
 
   return (
@@ -168,7 +170,7 @@ export default function CarPanel({
             <p className="label-text">Costos fijos mensuales</p>
             <button
               type="button"
-              onClick={() => setCostosFijosOpen(!costosFijosOpen)}
+              onClick={onCostosFijosToggle}
               className="flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs font-medium transition-colors"
               style={{ color: "#8896AB", backgroundColor: costosFijosOpen ? "rgba(14, 165, 233, 0.1)" : "transparent" }}
               aria-expanded={costosFijosOpen}
