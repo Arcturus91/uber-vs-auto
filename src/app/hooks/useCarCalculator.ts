@@ -71,15 +71,15 @@ export function useCarCalculator(inputs: CarCalculatorInputs): CarCalculatorResu
     const totalUberProjection = uberMonthly * projectionMonths;
 
     const carCosts = [
-      { label: "Cuota préstamo", value: cuotaMensual, color: "#3B82F6" },
-      { label: "Combustible", value: fuelMonthly, color: "#F59E0B" },
+      { label: "Cuota prestamo", value: cuotaMensual, color: "#0EA5E9" },
+      { label: "Combustible", value: fuelMonthly, color: "#FACC15" },
       { label: "Seguro vehicular", value: seguroVehicular, color: "#EF4444" },
-      { label: "Estacionamiento", value: parking, color: "#8B5CF6" },
-      { label: "Peajes", value: peajes, color: "#EC4899" },
-      { label: "Mantenimiento", value: mantenimiento, color: "#10B981" },
-      { label: "Lavado", value: lavado, color: "#6366F1" },
-      { label: "SOAT", value: soatMonthly, color: "#F97316" },
-      { label: "Rev. técnica", value: revisionTecnica, color: "#14B8A6" },
+      { label: "Estacionamiento", value: parking, color: "#A78BFA" },
+      { label: "Peajes", value: peajes, color: "#F472B6" },
+      { label: "Mantenimiento", value: mantenimiento, color: "#22C55E" },
+      { label: "Lavado", value: lavado, color: "#818CF8" },
+      { label: "SOAT", value: soatMonthly, color: "#FB923C" },
+      { label: "Rev. tecnica", value: revisionTecnica, color: "#2DD4BF" },
     ];
 
     const maxBar = Math.max(...carCosts.map((c) => c.value), depreciacion);

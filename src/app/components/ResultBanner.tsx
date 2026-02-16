@@ -10,31 +10,37 @@ export default function ResultBanner({ diff, diffWithDepr, fmt }: ResultBannerPr
   const positive = diff > 0;
   const deprPositive = diffWithDepr > 0;
 
+  const bgColor = positive ? "rgba(34, 197, 94, 0.06)" : "rgba(239, 68, 68, 0.06)";
+  const borderColor = positive ? "rgba(34, 197, 94, 0.2)" : "rgba(239, 68, 68, 0.2)";
+  const accentColor = positive ? "#22C55E" : "#EF4444";
+  const deprAccentColor = deprPositive ? "#22C55E" : "#EF4444";
+
   return (
     <div
-      className={`rounded-2xl p-6 mb-8 text-center ${
-        positive
-          ? "bg-gradient-to-r from-green-900/50 to-emerald-900/50 border border-green-700/50"
-          : "bg-gradient-to-r from-red-900/50 to-rose-900/50 border border-red-700/50"
-      }`}
+      className="rounded-2xl p-8 mb-8 text-center"
+      style={{ backgroundColor: bgColor, border: `1px solid ${borderColor}` }}
     >
-      <p className="text-sm text-gray-300 mb-1">
-        {positive ? "El auto te ahorraría" : "El auto te costaría de más"}
+      <p className="text-sm font-medium mb-2" style={{ color: "#8896AB" }}>
+        {positive ? "El auto te ahorraria" : "El auto te costaria de mas"}
       </p>
       <p
-        className={`text-4xl font-bold ${
-          positive ? "text-green-400" : "text-red-400"
-        }`}
+        className="text-5xl font-bold tracking-tight"
+        style={{ color: accentColor }}
       >
-        {fmt(Math.abs(diff))}/mes
+        {fmt(Math.abs(diff))}
+        <span className="text-lg font-normal ml-1" style={{ color: "#8896AB" }}>/mes</span>
       </p>
-      <p className="text-xs text-gray-500 mt-2">
-        Sin depreciación. Con depreciación:{" "}
-        {deprPositive ? "ahorras" : "gastas de más"}{" "}
-        <span className={deprPositive ? "text-green-400" : "text-red-400"}>
-          {fmt(Math.abs(diffWithDepr))}/mes
+      <div className="flex items-center justify-center gap-2 mt-4">
+        <span className="text-xs" style={{ color: "#64748B" }}>Sin depreciacion</span>
+        <span className="text-xs" style={{ color: "#334155" }}>|</span>
+        <span className="text-xs" style={{ color: "#64748B" }}>
+          Con depreciacion:{" "}
+          {deprPositive ? "ahorras" : "gastas de mas"}{" "}
+          <span className="font-semibold" style={{ color: deprAccentColor }}>
+            {fmt(Math.abs(diffWithDepr))}/mes
+          </span>
         </span>
-      </p>
+      </div>
     </div>
   );
 }
